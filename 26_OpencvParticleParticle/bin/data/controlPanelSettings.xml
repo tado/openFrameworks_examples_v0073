@@ -1,0 +1,18 @@
+<grab>
+    <val_0>0.000000000</val_0>
+</grab>
+<thresh>
+    <val_0>31.111112595</val_0>
+</thresh>
+<use_live>
+    <val_0>0.000000000</val_0>
+</use_live>
+<draw_input>
+    <val_0>1.000000000</val_0>
+</draw_input>
+<diff_mode>
+    <val_0>2.000000000</val_0>
+</diff_mode>
+<num>
+    <val_0>900.000000000</val_0>
+</num>
