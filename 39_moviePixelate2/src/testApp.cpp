@@ -2,7 +2,7 @@
 
 void testApp::setup(){
 	ofSetFrameRate(60);
-	ofBackground(255, 255, 255);
+	ofBackground(0);
 	ofSetRectMode(OF_RECTMODE_CENTER);
     //フォントを読みこみ
     font.loadFont("Miguta.otf", 8);
@@ -34,7 +34,7 @@ void testApp::draw(){
 			//明度を算出
 			int brightness = (r + g + b) / 3.0f;
 			//濃度の応じた文字をとりだし
-            int num = ofMap(brightness, 0, 255, 9, 0);
+            int num = ofMap(brightness, 0, 255, 0, 9);
             string str = ofToString(num);
 			//文字を描画
             ofSetColor(r,g,b);
