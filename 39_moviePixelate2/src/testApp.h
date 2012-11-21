@@ -11,4 +11,5 @@ public:
 	//カメラからの映像取得のためのクラス
     ofVideoGrabber myVideo;
 	string pixelString;
+    ofTrueTypeFont font;
 };

@@ -12,4 +12,5 @@ public:
 	//ofImageをインスタンス化
 	ofImage myImage;
 	string pixelString;
+    ofTrueTypeFont font;
 };

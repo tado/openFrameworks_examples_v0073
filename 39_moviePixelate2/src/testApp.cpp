@@ -4,9 +4,8 @@ void testApp::setup(){
 	ofSetFrameRate(60);
 	ofBackground(255, 255, 255);
 	ofSetRectMode(OF_RECTMODE_CENTER);
-
-	//8段階の文字の濃度を文字列に
-	pixelString = " .-+*a&@";
+    //フォントを読みこみ
+    font.loadFont("Miguta.otf", 8);
 	//640x480 pixelでカメラの映像をキャプチャー
     myVideo.initGrabber(800, 600, true);    
 }
@@ -23,7 +22,7 @@ void testApp::draw(){
 	//全てのピクセルの値を取得
 	unsigned char * pixels = myVideo.getPixels();
 	
-	int skip = 8;
+	int skip = 11;
 	ofTranslate(left, top+skip);
 	ofSetColor(0, 0, 0);
 	for (int i = 0; i < myVideo.width; i = i + skip){
@@ -33,11 +32,13 @@ void testApp::draw(){
 			int g = pixels[j * myVideo.width * 3 + i * 3 + 1];
 			int b = pixels[j * myVideo.width * 3 + i * 3 + 2];
 			//明度を算出
-			float pct = 1.0 - (r + g + b) / 3.0f / 255.0f;
+			int brightness = (r + g + b) / 3.0f;
 			//濃度の応じた文字をとりだし
-			string str = pixelString.substr(int(pct * 8),1);
+            int num = ofMap(brightness, 0, 255, 9, 0);
+            string str = ofToString(num);
 			//文字を描画
-			ofDrawBitmapString(str, i, j);
+            ofSetColor(r,g,b);
+            font.drawString(str, i, j);
 		}
 	}
 }
