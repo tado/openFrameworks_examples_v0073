@@ -3,17 +3,20 @@
 using namespace ofxCv;
 
 void testApp::setup() {
-	ofSetVerticalSync(true);
-	ofSetDrawBitmapMode(OF_BITMAPMODE_MODEL_BILLBOARD);
+	// カメラ初期化
 	cam.initGrabber(640, 480);
 	
+	// フェイストラッカー初期化
 	tracker.setup();
+	// 認識する際の画像をリスケール(小さくするほど高速)
 	tracker.setRescale(.5);
 }
 
 void testApp::update() {
+	// カメラをアップデート
 	cam.update();
 	if(cam.isFrameNew()) {
+		// フェイストラッカーをアップデート
 		tracker.update(toCv(cam));
 	}
 }
@@ -21,12 +24,20 @@ void testApp::update() {
 void testApp::draw() {
 	ofSetColor(255);
 	cam.draw(0, 0);
+	// フレームレートを表示
 	ofDrawBitmapString(ofToString((int) ofGetFrameRate()), 10, 20);
 	
+	// 左目、右目、顔の輪郭の線を抽出
 	ofPolyline leftEye = tracker.getImageFeature(ofxFaceTracker::LEFT_EYE);
 	ofPolyline rightEye = tracker.getImageFeature(ofxFaceTracker::RIGHT_EYE);
 	ofPolyline faceOutline = tracker.getImageFeature(ofxFaceTracker::FACE_OUTLINE);
 	
+	// 顔を分析して、3Dメッシュを描画
+	ofSetLineWidth(1);
+	ofSetColor(255);
+	tracker.getImageMesh().drawWireframe();
+	
+	// 左目、右目、輪郭を描画
 	ofSetLineWidth(2);
 	ofSetColor(ofColor::red);
 	leftEye.draw();
@@ -34,15 +45,10 @@ void testApp::draw() {
 	rightEye.draw();
 	ofSetColor(ofColor::blue);
 	faceOutline.draw();
-	
-	ofSetLineWidth(1);
-	ofSetColor(255);
-	tracker.draw();
-	
-	tracker.getImageMesh().drawWireframe();
 }
 
 void testApp::keyPressed(int key) {
+	// フェイストラッカーをリセット
 	if(key == 'r') {
 		tracker.reset();
 	}
