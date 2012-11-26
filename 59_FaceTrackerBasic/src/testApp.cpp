@@ -9,7 +9,7 @@ void testApp::setup() {
 	// フェイストラッカー初期化
 	tracker.setup();
 	// 認識する際の画像をリスケール(小さくするほど高速)
-	tracker.setRescale(.5);
+	tracker.setRescale(.2);
 }
 
 void testApp::update() {
