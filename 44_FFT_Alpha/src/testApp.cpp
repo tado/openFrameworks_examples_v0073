@@ -9,7 +9,7 @@ void testApp::setup(){
 	ofEnableAlphaBlending();
 
 	//FFTのサイズとバッファサイズを設定
-	fft_size = 4096;
+	fft_size = 64;
 	buffer_size = fft_size * 2;
 	
 	//FFTサイズにあわせて出力結果の配列を左右2ch分準備

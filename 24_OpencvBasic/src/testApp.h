@@ -2,7 +2,7 @@
 #include "ofMain.h"
 #include "ofxOpenCv.h"
 
-//#define _USE_LIVE_VIDEO
+#define _USE_LIVE_VIDEO
 
 class testApp : public ofBaseApp{
 public:

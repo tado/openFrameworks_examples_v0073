@@ -29,7 +29,7 @@ void testApp::update(){
 	vidGrabber.grabFrame();
 	bNewFrame = vidGrabber.isFrameNew();
 	#else
-	vidPlayer.idleMovie();
+	//vidPlayer.idleMovie();
 	bNewFrame = vidPlayer.isFrameNew();
 	#endif
 	
@@ -46,7 +46,8 @@ void testApp::update(){
 			bLearnBakground = false;
 		}
 		
-		grayDiff.absDiff(grayBg, grayImage);
+		//grayDiff.absDiff(grayBg, grayImage);
+        grayDiff.absDiff(grayImage);
 		grayDiff.threshold(threshold);
 		
 		contourFinder.findContours(grayDiff, 20, (340*240)/3, 10, true);

@@ -1,13 +1,12 @@
 #include "testApp.h"
 
 void testApp::setup(){
-	
 	//画面基本設定
 	ofSetFrameRate(60);
 	ofBackground(0, 0, 0);
 	
 	//FFTのサイズとバッファサイズを設定
-	fft_size = 512;
+	fft_size = 1024;
 	buffer_size = fft_size * 2;
 	
 	//FFTサイズにあわせて出力結果の配列を準備
@@ -23,11 +22,11 @@ void testApp::setup(){
 void testApp::update() {
 	//オーディオ入力をFFT解析
 	avg_power = 0.0; //平均パワーを初期化
-	myfft.powerSpectrum(0, fft_size, input, buffer_size, magnitude, phase, power, &avg_power);
+	myfft.powerSpectrum(0, fft_size, input, buffer_size,
+                        magnitude, phase, power, &avg_power);
 }
 
 void testApp::draw() {
-	
 	//FFT解析した結果をもとに、グラフを生成
 	float w = (float)ofGetWidth()/ (float)fft_size;
 	for (int i = 0; i < fft_size; i++) {
