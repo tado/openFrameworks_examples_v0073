@@ -18,9 +18,4 @@ public:
     void mousePressed(int x, int y, int button);
     void mouseReleased(int x, int y, int button);
     void windowResized(int w, int h);
-    
-    void audioReceived(float * input, int bufferSize, int nChannels);
-    void audioRequested(float * output, int bufferSize, int nChannels);
-    
-    ofxPd pd;
 };
