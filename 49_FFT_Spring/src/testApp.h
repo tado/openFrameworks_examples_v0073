@@ -17,9 +17,11 @@ public:
     // データ格納用領域
 	float *audio_input;
 	float *magnitude, *phase, *power;
-	float *magnitude_average, *magnitude_average_snapshot; 
-	float *circle_phase;
-	float *locOffsetX, *locOffsetY;
+	float *magnitude_average;
 	// FFTクラスのインスタンス
 	fft myfft;
+    // ばねのパラメータ
+    float stiffness, damping, mass;
+    //パーティクルの位置とスピード
+    ofVec2f *pos, *vec;
 };
